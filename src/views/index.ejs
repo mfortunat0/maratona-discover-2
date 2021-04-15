@@ -33,12 +33,13 @@
         <img id="logo" src="/images/logo.svg" alt="Logo" />
         <span id="notification">
           <img src="/images/alert-octagon.svg" alt="Alerta" />
-          Você tem 2 horas livres no seu dia
+          <%= freeHours < 0 ? "Você não tem horas livres" : `Você tem ${freeHours} horas livres no seu dia` %>
         </span>
         <a href="/profile" id="avatar-profile">
-          <p>Jakeliny <span>Ver perfil</span></p>
-          <img
-            src="https://avatars.githubusercontent.com/u/17316392?s=460&u=6912a91a70bc89745a2079fdcdad3bc3ce370f13&v=4" />
+          <p>
+            <%= profile.name %><span>Ver perfil</span>
+          </p>
+          <img src="<%= profile.avatar %>" />
         </a>
       </section>
 
@@ -49,15 +50,21 @@
 
         <div class="info">
           <div class="total">
-            <strong>12</strong>
+            <strong>
+              <%= statusCount.total %>
+            </strong>
             Projetos ao total
           </div>
           <div class="in-progress">
-            <strong>7</strong>
+            <strong>
+              <%= statusCount.progress %>
+            </strong>
             Em andamento
           </div>
           <div class="finished">
-            <strong>4</strong>
+            <strong>
+              <%= statusCount.done %>
+            </strong>
             Encerrados
           </div>
         </div>
@@ -88,7 +95,7 @@
               <span>Prazo</span>
               <p>
                 <% if(job.status==="progress" ){ %>
-                  <%= job.remaining %>
+                  <%= job.remaining %> dias para a entrega
                     <% } else{ %>
                       Prazo encerrado
                       <% } %>
@@ -114,35 +121,6 @@
           </div>
           <% }) %>
             <!-- end card -->
-
-            <div class="card done" data-id="2">
-              <div class="id column">2</div>
-              <div class="name column">
-                OneTwo Project
-              </div>
-              <div class="deadline column">
-                <span>Prazo</span>
-                <p>3 dias para a entrega</p>
-              </div>
-              <div class="amount column">
-                <span>Valor</span>
-                <p>R$ 4500,00</p>
-              </div>
-              <div class="status badge column">
-                Encerrado
-              </div>
-              <div class="actions column flex">
-                <p class="sr-only">Ações</p>
-                <a href="/job/1" class="button white edit" title="Editar Job">
-                  <img src="/images/edit-24.svg" alt="Editar Job" />
-                </a>
-                <button class="delete button white" title="Excluir Job">
-                  <img src="/images/trash-24.svg" alt="Excluir Job" />
-                </button>
-              </div>
-            </div>
-      </div>
-      <!-- end cards -->
     </main>
   </div>
   <!-- end container -->
